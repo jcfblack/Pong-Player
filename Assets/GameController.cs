@@ -1,4 +1,4 @@
-﻿/* Pong-Player
+﻿/* LMSC_281_Pong-Player
  * Justin Ferrill
  * jferrill@berklee.edu
  * 
