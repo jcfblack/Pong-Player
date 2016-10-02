@@ -8,28 +8,20 @@ public class ScoreHandler : MonoBehaviour
 	public Text player1ScoreDisplay, player2ScoreDisplay;
 	public GameController gameController;
 
-	// Use this for initialization
 	void Start()
 	{
 		player1Score = player2Score = 0;
-		player1ScoreDisplay = GameObject.Find ("Player1 Score").GetComponent<Text> ();
-		player2ScoreDisplay = GameObject.Find ("Player2 Score").GetComponent<Text> ();
-	}
-	
-	// Update is called once per frame
-	void Update()
-	{
-	
 	}
 
-	public void IncrementScore(int playerNumber) //returns true if and only if a player has won, causing the game to end
+	public void IncrementScore(int playerNumber)
 	{
 		bool gameOver = false;
-		if (playerNumber == 1)
+
+		if(playerNumber == 1)
 		{
 			player1Score++;
 			UpdateScoreDisplay();
-			if (player1Score >= 11 && player2Score <= player1Score - 2)
+			if(player1Score >= 11 && player2Score <= player1Score - 2)
 			{
 				gameOver = true;
 			}
@@ -38,11 +30,11 @@ public class ScoreHandler : MonoBehaviour
 				gameOver = false;
 			}	
 		}
-		else if (playerNumber == 2)
+		else if(playerNumber == 2)
 		{
 			player2Score++;
 			UpdateScoreDisplay();
-			if (player2Score >= 11 && player1Score <= player2Score - 2)
+			if(player2Score >= 11 && player1Score <= player2Score - 2)
 			{
 				gameOver = true;
 			}
