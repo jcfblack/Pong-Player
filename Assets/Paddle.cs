@@ -7,13 +7,13 @@ public class Paddle : MonoBehaviour, SolidObject
 	public const float PADDLE_SPEED = 25.0f;
 	public const float MAX_MOMENTUM = 15.0f;
 	public string controlUp, controlDown;
-	Vector3 startPosition;
+	public Vector3 startPosition;
 	public GameController gameController;
 
 	void Start()
 	{
-		myMomentum = new Vector3(0, 0, 0);
 		startPosition = transform.position;
+		myMomentum = new Vector3(0, 0, 0);
 	}
 
 	void Update()
