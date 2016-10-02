@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/* Pong-Player
+ * Justin Ferrill
+ * jferrill@berklee.edu
+ * 
+ * This class manages incrementing and displaying player scores and tells GameController whether it was a 
+ * game winning point or if it needs to set up the next one.
+ * 
+ */
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -21,7 +30,7 @@ public class ScoreHandler : MonoBehaviour
 		{
 			player1Score++;
 			UpdateScoreDisplay();
-			if(player1Score >= 11 && player2Score <= player1Score - 2)
+			if(player1Score >= 11 && player2Score <= player1Score - 2)		//evaluates for win condition
 			{
 				gameOver = true;
 			}
@@ -34,7 +43,7 @@ public class ScoreHandler : MonoBehaviour
 		{
 			player2Score++;
 			UpdateScoreDisplay();
-			if(player2Score >= 11 && player1Score <= player2Score - 2)
+			if(player2Score >= 11 && player1Score <= player2Score - 2)		//evaluates for win condition
 			{
 				gameOver = true;
 			}

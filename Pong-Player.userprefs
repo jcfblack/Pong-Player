@@ -1,9 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MessageHandler.cs">
     <Files>
-      <File FileName="Assets/Paddle.cs" Line="16" Column="37" />
-      <File FileName="Assets/GameController.cs" Line="12" Column="7" />
+      <File FileName="Assets/Paddle.cs" Line="5" Column="86" />
+      <File FileName="Assets/GameController.cs" Line="47" Column="15" />
+      <File FileName="Assets/Ball.cs" Line="103" Column="2" />
+      <File FileName="Assets/MessageHandler.cs" Line="25" Column="4" />
+      <File FileName="Assets/ScoreHandler.cs" Line="6" Column="61" />
+      <File FileName="Assets/ScoringBoundary.cs" Line="8" Column="4" />
+      <File FileName="Assets/SolidBoundary.cs" Line="7" Column="4" />
+      <File FileName="Assets/SolidObject.cs" Line="8" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
