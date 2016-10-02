@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/* Pong-Player
+ * Justin Ferrill
+ * jferrill@berklee.edu
+ * 
+ * This class detects when a ball has entered the right or left sides of the screen and uses ScoreHandler to
+ * give the appropriate player a point.
+ * 
+ */ 
+
+using UnityEngine;
 using System.Collections;
 
 public class ScoringBoundary : MonoBehaviour

@@ -1,10 +1,22 @@
-﻿using UnityEngine;
+﻿/* Pong-Player
+ * Justin Ferrill
+ * jferrill@berklee.edu
+ * 
+ * This class handles Ball movement and collision, including maintaining and applying "mySpin".
+ * 
+ * At the end of a collision with a SolidObject, mySpin records the momentum of the SolidObject
+ * and the y velocity of Ball. This information is used to adjust the reflection angle the next time Ball collides
+ * with a SolidObject.
+ * 
+ */ 
+
+using UnityEngine;
 using System.Collections;
 
 public class Ball : MonoBehaviour
 {
 	Vector3 myVelocity, startPosition, startVelocity, mySpin;
-	public const float START_SPEED = 20.0F, SPEED_REDUCTION_RATIO = 0.85F;
+	public const float START_SPEED = 20.0F, SPEED_REDUCTION_RATIO = 0.85F, MIN_SPEED = 15.0F;
 
 	void Start()
 	{
@@ -76,11 +88,16 @@ public class Ball : MonoBehaviour
 				mySpin.y = mySolidObject.GetMomentum().y;
 			}//applies SolidObject momentum to ball spin for next collision
 
-			if(ballSpeed > START_SPEED)
+			//speed normalization for ease of play
+			if (ballSpeed > START_SPEED)
 			{
-				myVelocity.x *= SPEED_REDUCTION_RATIO + .05f;	//helps correct ball's tendency to ricochet annoyingly between the ceiling and floor
+				myVelocity.x *= SPEED_REDUCTION_RATIO + .05f;	//higher ratio on x axis helps correct ball's tendency to ricochet annoyingly between the ceiling and floor
 				myVelocity.y *= SPEED_REDUCTION_RATIO;
 			}
+			else if (ballSpeed < MIN_SPEED)
+			{
+				myVelocity = myVelocity.normalized * MIN_SPEED;
+			}//speed normalization for ease of play
 		}
 	}
 
@@ -94,7 +111,7 @@ public class Ball : MonoBehaviour
 			Vector3.Angle(randomVelocity, transform.up * -1) <= 30 ||		//perpendicular with walls or paddles
 			Vector3.Angle(randomVelocity, transform.right) <=10 ||			
 			Vector3.Angle(randomVelocity, transform.right * -1) <= 10); 
-		return randomVelocity;							//returns random Vector3, with z component = 0 and magnitude "magnitude"
+		return randomVelocity;							
 	}
 
 	public float ballSpeed

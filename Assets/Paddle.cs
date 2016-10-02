@@ -1,11 +1,25 @@
-﻿using UnityEngine;
+﻿/* Pong-Player
+ * Justin Ferrill
+ * jferrill@berklee.edu
+ * 
+ * This class handles player input for moving the Paddles and implements SolidObject to indicate to Ball
+ * that it should recalculate velocity when it collides with a Paddle.
+ * 
+ * It also keeps track of keeps track of Paddle.myMomentum. myMomentum is a measure of how long the paddle has
+ * been moving in the direction it's currently moving. Positive myMomentum is consecutivie frames on the positive
+ * y axis, and negative myMomentum is consecutive frames on the negative y axis. 
+ * 
+ * It is used is recorded by Ball.mySpin to help calculate collisions
+ * 
+ */
+
+using UnityEngine;
 using System.Collections;
 
 public class Paddle : MonoBehaviour, SolidObject
 {
 	Vector3 myMomentum;
-	public const float PADDLE_SPEED = 25.0f;
-	public const float MAX_MOMENTUM = 15.0f;
+	public const int CEILING = 13, FLOOR = -13, MAX_MOMENTUM = 10, PADDLE_SPEED = 25;
 	public string controlUp, controlDown;
 	public Vector3 startPosition;
 	public GameController gameController;
@@ -18,7 +32,7 @@ public class Paddle : MonoBehaviour, SolidObject
 
 	void Update()
 	{
-		if(gameController.pointActive)
+		if(gameController.IsPointActive())
 		{
 			MovePaddle();
 		}
@@ -32,13 +46,13 @@ public class Paddle : MonoBehaviour, SolidObject
 		} 
 		else if(Input.GetKey(controlUp)) 
 		{
-			if(transform.position.y >= GameController.PADDLE_CEILING)			//stops paddle from ascending off the screen
+			if(transform.position.y >= CEILING)			
 			{
-				transform.position = new Vector3(startPosition.x, GameController.PADDLE_CEILING, startPosition.y);
+				transform.position = new Vector3(startPosition.x, CEILING, startPosition.y);
 			}
 			if(myMomentum.y < 0)
 			{
-				ResetMomentum();	//If momentum was going down, while the paddle is going up, reset momentum value
+				ResetMomentum();		//if momentum was going the opposite direction, reset momentum					
 			}
 			else if (Mathf.Abs (myMomentum.y) >= MAX_MOMENTUM)
 			{ 
@@ -52,27 +66,27 @@ public class Paddle : MonoBehaviour, SolidObject
 		}
 		else if(Input.GetKey(controlDown)) 
 		{
-			if(transform.position.y <= GameController.PADDLE_FLOOR)
+			if(transform.position.y <= FLOOR)
 			{
-				transform.position = new Vector3(startPosition.x, GameController.PADDLE_FLOOR, startPosition.y);
+				transform.position = new Vector3(startPosition.x, FLOOR, startPosition.y);
 			}
-			if(myMomentum.y > 0) 
+			if(myMomentum.y > 0) 	
 			{
-				ResetMomentum(); //If momentum is up while paddle is moving down, reset momentum
+				ResetMomentum();		//if momentum was going the opposite direction, reset momentum
 			} 
-			else if(Mathf.Abs(myMomentum.y) >= MAX_MOMENTUM) //don't let momentum go higher than max
+			else if(Mathf.Abs(myMomentum.y) >= MAX_MOMENTUM)
 			{
 				myMomentum.y = MAX_MOMENTUM;
 			}
 			else 
 			{
-				addDownwardsMomentum(); //decrements momentum while down is pressed
+				addDownwardsMomentum();
 			}
 			transform.Translate(Vector3.down * PADDLE_SPEED * Time.deltaTime);
 		}
 		else
 		{
-			ResetMomentum(); //if no input, reset momentum
+			ResetMomentum(); 	//if paddle is not moving, reset momentum
 		}
 	}
 
@@ -83,12 +97,12 @@ public class Paddle : MonoBehaviour, SolidObject
 
 	public void addUpwardsMomentum()
 	{
-		myMomentum.y += 1.5F;
+		myMomentum.y++;
 	}
 
 	public void addDownwardsMomentum()
 	{
-		myMomentum.y -= 1.5F;
+		myMomentum.y--;
 	}
 
 	public void ResetMomentum()

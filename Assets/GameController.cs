@@ -1,17 +1,26 @@
-﻿using UnityEngine;
+﻿/* Pong-Player
+ * Justin Ferrill
+ * jferrill@berklee.edu
+ * 
+ * This class is responsible for handling the start of a new game and each new point. It uses Ball, Paddle
+ * and ScoreHandler to reset the appropriate classes when necessary and MessageHandler to display relevant
+ * text overlays.
+ * 
+ */ 
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class GameController : MonoBehaviour
 {
-	public const int PADDLE_CEILING = 13, PADDLE_FLOOR = -13, OFF = 0;
+	public const int OFF = 0;
 	public Ball ball;
 	public Paddle player1Paddle, player2Paddle;
 	public ScoreHandler scoreHandler;
-	public EndMessageHandler endMessageHandler;
+	public MessageHandler messageHandler;
 	bool gameOver;
-	bool newPoint;
-	public GameObject instructions;
+	bool pointActive;
 
 	void Start()
 	{
@@ -20,11 +29,11 @@ public class GameController : MonoBehaviour
 
 	void Update()
 	{
-		if(newPoint && Input.GetKey(KeyCode.Space))		//if the user presses space while the game is over
-		{													//a new game will begin
-			instructions.SetActive(false);
+		if(!pointActive && Input.GetKey(KeyCode.Space))			
+		{														
+			messageHandler.DisplayInstructions(false);
 			ball.Launch();
-			newPoint = false;
+			pointActive = true;
 		}
 		else if(Input.GetKey(KeyCode.Escape))
 		{
@@ -35,31 +44,28 @@ public class GameController : MonoBehaviour
 	void NewGame()
 	{
 		gameOver = false;
-		endMessageHandler.SetDisplay(OFF);
-		NewPoint();
+		messageHandler.DisplayVictoryScreen(OFF);
+		messageHandler.DisplayInstructions(true);
 		scoreHandler.Reset();
-		instructions.SetActive(true);
+		NewPoint();
 	}
 
 	public void GameOver(int winningPlayer)
 	{
-		endMessageHandler.SetDisplay(winningPlayer);
+		messageHandler.DisplayVictoryScreen(winningPlayer);
 		gameOver = true;
 	}
 
 	public void NewPoint()
 	{
-		newPoint = true;
+		pointActive = false;
 		ball.Reset();
 		player1Paddle.Reset();
 		player2Paddle.Reset();
 	}
 
-	public bool pointActive
+	public bool IsPointActive()
 	{
-		get
-		{
-			return !newPoint;
-		}
+		return pointActive;
 	}
 }
