@@ -13,16 +13,14 @@ public class GameController : MonoBehaviour
 	bool newPoint;
 	public GameObject instructions;
 
-	// Use this for initialization
-	void Start ()
+	void Start()
 	{
-		NewGame ();
+		NewGame();
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+	void Update()
 	{
-		if (newPoint && Input.GetKey(KeyCode.Space))		//if the user presses space while the game is over
+		if(newPoint && Input.GetKey(KeyCode.Space))		//if the user presses space while the game is over
 		{													//a new game will begin
 			instructions.SetActive(false);
 			ball.Launch();

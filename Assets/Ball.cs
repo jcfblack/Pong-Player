@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Ball : MonoBehaviour {
-
+public class Ball : MonoBehaviour
+{
 	Vector3 myVelocity, startPosition, startVelocity, mySpin;
 	public const float START_SPEED = 20.0F, SPEED_REDUCTION_RATIO = 0.85F;
 
-	// Use this for initialization
 	void Start()
 	{
 		myVelocity = mySpin = startVelocity = new Vector3(0, 0, 0);
@@ -15,14 +14,12 @@ public class Ball : MonoBehaviour {
 
 	void Update()
 	{
-		{
-			transform.Translate(myVelocity * Time.deltaTime);
-		}
+		transform.Translate(myVelocity * Time.deltaTime);
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
-		SolidObject mySolidObject = other.gameObject.GetComponent<SolidObject> ();
+		SolidObject mySolidObject = other.gameObject.GetComponent<SolidObject>();
 
 		//no action if triggered by a non-SolidObject
 		if(mySolidObject == null)
@@ -76,7 +73,7 @@ public class Ball : MonoBehaviour {
 			else 
 			{
 				mySpin.x = myVelocity.y;
-				mySpin.y = mySolidObject.GetMomentum ().y;
+				mySpin.y = mySolidObject.GetMomentum().y;
 			}//applies SolidObject momentum to ball spin for next collision
 
 			if(ballSpeed > START_SPEED)
@@ -117,6 +114,6 @@ public class Ball : MonoBehaviour {
 
 	public void Launch()
 	{
-		myVelocity = GetRandomVelocity (START_SPEED);	//launches the ball at a (mostly) random angle
+		myVelocity = GetRandomVelocity(START_SPEED);	//launches the ball at a (mostly) random angle
 	}
 }

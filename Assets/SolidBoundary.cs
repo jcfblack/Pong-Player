@@ -12,13 +12,4 @@ public class SolidBoundary : MonoBehaviour, SolidObject
 	{
 		return "horizontal";
 	}
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

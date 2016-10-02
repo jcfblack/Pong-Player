@@ -1,21 +1,22 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Paddle.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SolidObject.cs">
     <Files>
-      <File FileName="Assets/Paddle.cs" Line="15" Column="34" />
-      <File FileName="Assets/SolidObject.cs" Line="46" Column="255" />
-      <File FileName="Assets/Ball.cs" Line="88" Column="9" />
-      <File FileName="Assets/GameController.cs" Line="41" Column="1" />
-      <File FileName="Assets/ScoreHandler.cs" Line="77" Column="24" />
-      <File FileName="Assets/ScoringBoundery.cs" Line="7" Column="2" />
-      <File FileName="Assets/EndMessageHandler.cs" Line="23" Column="3" />
+      <File FileName="Assets/Paddle.cs" Line="71" Column="23" />
+      <File FileName="Assets/SolidObject.cs" Line="8" Column="20" />
+      <File FileName="Assets/Ball.cs" Line="117" Column="33" />
+      <File FileName="Assets/GameController.cs" Line="20" Column="2" />
+      <File FileName="Assets/ScoreHandler.cs" Line="37" Column="6" />
+      <File FileName="Assets/EndMessageHandler.cs" Line="29" Column="14" />
+      <File FileName="Assets/ScoringBoundary.cs" Line="7" Column="1" />
+      <File FileName="Assets/SolidBoundary.cs" Line="14" Column="3" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Pong" expanded="True">
             <Node name="Assembly-CSharp" expanded="True">
-              <Node name="Paddle.cs" selected="True" />
+              <Node name="SolidObject.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -23,7 +24,9 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <RunToCursorBreakpoint file="/Users/Jcfblack/Documents/Logic and Programming Projects/Pong/Assets/Ball.cs" line="124" column="27" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

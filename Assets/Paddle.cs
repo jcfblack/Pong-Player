@@ -10,18 +10,15 @@ public class Paddle : MonoBehaviour, SolidObject
 	Vector3 startPosition;
 	public GameController gameController;
 
-
-	// Use this for initialization
 	void Start()
 	{
-		myMomentum = new Vector3 (0, 0, 0);
+		myMomentum = new Vector3(0, 0, 0);
 		startPosition = transform.position;
 	}
-	
-	// Update is called once per frame
+
 	void Update()
 	{
-		if (gameController.pointActive)
+		if(gameController.pointActive)
 		{
 			MovePaddle();
 		}
@@ -29,37 +26,37 @@ public class Paddle : MonoBehaviour, SolidObject
 
 	void MovePaddle()
 	{
-		if (Input.GetKey (controlUp) && Input.GetKey (controlDown)) 
+		if (Input.GetKey(controlUp) && Input.GetKey(controlDown)) 
 		{ 
-			ResetMomentum ();
+			ResetMomentum();
 		} 
-		else if(Input.GetKey (controlUp)) 
+		else if(Input.GetKey(controlUp)) 
 		{
-			if (transform.position.y >= GameController.PADDLE_CEILING)			//stops paddle from ascending off the screen
+			if(transform.position.y >= GameController.PADDLE_CEILING)			//stops paddle from ascending off the screen
 			{
-				transform.position = new Vector3 (startPosition.x, GameController.PADDLE_CEILING, startPosition.y);
+				transform.position = new Vector3(startPosition.x, GameController.PADDLE_CEILING, startPosition.y);
 			}
-			if (myMomentum.y < 0)
+			if(myMomentum.y < 0)
 			{
-				ResetMomentum (); //If momentum was going down, while the paddle is going up, reset momentum value
+				ResetMomentum();	//If momentum was going down, while the paddle is going up, reset momentum value
 			}
-			else if (Mathf.Abs (myMomentum.y) >= MAX_MOMENTUM) //don't let momentum go higher than max
+			else if (Mathf.Abs (myMomentum.y) >= MAX_MOMENTUM)
 			{ 
 				myMomentum.y = MAX_MOMENTUM;
 			}
 			else 
 			{
-				addUpwardsMomentum(); //increments momentum while up is pressed. The longer the Paddle has been moving, 
+				addUpwardsMomentum();
 			}
 			transform.Translate (Vector3.up * PADDLE_SPEED * Time.deltaTime);
 		}
-		else if (Input.GetKey (controlDown)) 
+		else if(Input.GetKey(controlDown)) 
 		{
-			if (transform.position.y <= GameController.PADDLE_FLOOR)
+			if(transform.position.y <= GameController.PADDLE_FLOOR)
 			{
-				transform.position = new Vector3 (startPosition.x, GameController.PADDLE_FLOOR, startPosition.y);
+				transform.position = new Vector3(startPosition.x, GameController.PADDLE_FLOOR, startPosition.y);
 			}
-			if (myMomentum.y > 0) 
+			if(myMomentum.y > 0) 
 			{
 				ResetMomentum(); //If momentum is up while paddle is moving down, reset momentum
 			} 
@@ -69,9 +66,9 @@ public class Paddle : MonoBehaviour, SolidObject
 			}
 			else 
 			{
-				addDownwardsMomentum (); //decrements momentum while down is pressed
+				addDownwardsMomentum(); //decrements momentum while down is pressed
 			}
-			transform.Translate (Vector3.down * PADDLE_SPEED * Time.deltaTime);
+			transform.Translate(Vector3.down * PADDLE_SPEED * Time.deltaTime);
 		}
 		else
 		{

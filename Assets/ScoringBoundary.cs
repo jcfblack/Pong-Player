@@ -5,19 +5,9 @@ public class ScoringBoundary : MonoBehaviour
 {
 	public ScoreHandler scoreHandler;
 
-	// Use this for initialization
-	void Start ()
-	{
-	}
-		
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
 	void OnTriggerEnter(Collider otherObject)
 	{
-		if (otherObject.tag.Equals ("Ball"))
+		if (otherObject.tag.Equals("Ball"))
 		{
 			if (otherObject.bounds.center.x < 0)		//if the collider (which is necessarily the ball) is on the
 			{ 											//left side of the screen when it makes contact with the
