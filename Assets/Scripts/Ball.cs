@@ -2,7 +2,8 @@
  * Justin Ferrill
  * jferrill@berklee.edu
  * 
- * This class handles Ball movement and collision, including maintaining and applying "mySpin".
+ * This class handles Ball movement and collision, including playing the appropriate audio as well as
+ * maintaining and applying "mySpin".
  * 
  * At the end of a collision with a SolidObject, mySpin records the momentum of the SolidObject
  * and the y velocity of Ball. This information is used to adjust the reflection angle the next time Ball collides
@@ -30,15 +31,18 @@ public class Ball : MonoBehaviour
 	}
 
 	void OnTriggerEnter(Collider other)
-	{
+	{		
 		SolidObject mySolidObject = other.gameObject.GetComponent<SolidObject>();
 
-		//no action if triggered by a non-SolidObject
+		//no physics action if triggered by a non-SolidObject
 		if(mySolidObject == null)
 		{
 		}
 		else
 		{
+			gameObject.GetComponent<AudioSource>().pitch = ballSpeed / START_SPEED;
+			gameObject.GetComponent<AudioSource>().Play();
+
 			//applies spin to ball velocity
 			if(mySolidObject.GetSlope() == "vertical")
 			{

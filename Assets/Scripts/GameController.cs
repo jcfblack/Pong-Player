@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
 	public Paddle player1Paddle, player2Paddle;
 	public ScoreHandler scoreHandler;
 	public MessageHandler messageHandler;
-	bool gameOver;
+//	bool gameOver;		//not currently used, but could be useful for additional features
 	bool pointActive;
 
 	void Start()
@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour
 
 	void NewGame()
 	{
-		gameOver = false;
+//		gameOver = false;
 		messageHandler.DisplayVictoryScreen(OFF);
 		messageHandler.DisplayInstructions(true);
 		scoreHandler.Reset();
@@ -53,7 +53,7 @@ public class GameController : MonoBehaviour
 	public void GameOver(int winningPlayer)
 	{
 		messageHandler.DisplayVictoryScreen(winningPlayer);
-		gameOver = true;
+//		gameOver = true;
 	}
 
 	public void NewPoint()

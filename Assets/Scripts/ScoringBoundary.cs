@@ -2,8 +2,8 @@
  * Justin Ferrill
  * jferrill@berklee.edu
  * 
- * This class detects when a ball has entered the right or left sides of the screen and uses ScoreHandler to
- * give the appropriate player a point.
+ * This class detects when a ball has entered the right or left sides of the screen. It then plays a sound
+ * and uses ScoreHandler to give the appropriate player a point. 
  * 
  */ 
 
@@ -18,6 +18,8 @@ public class ScoringBoundary : MonoBehaviour
 	{
 		if (otherObject.tag.Equals("Ball"))
 		{
+			gameObject.GetComponent<AudioSource>().Play();
+
 			if (otherObject.bounds.center.x < 0)		//if the collider (which is necessarily the ball) is on the
 			{ 											//left side of the screen when it makes contact with the
 				scoreHandler.IncrementScore(2);			//scoring boundery, increment player 2's score
